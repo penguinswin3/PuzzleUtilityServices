@@ -96,7 +96,8 @@ public class Form_Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        form_Sudoku.setVisible(true);
+        form_Main.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -106,7 +107,7 @@ public class Form_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
-    
+    public static Form_Sudoku form_Sudoku;
     public static Form_TicTacToe form_TicTacToe;
     public static Form_Main form_Main;
     
@@ -137,8 +138,6 @@ public class Form_Main extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        System.out.println("Main");
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -147,6 +146,9 @@ public class Form_Main extends javax.swing.JFrame {
 
                 form_TicTacToe = new Form_TicTacToe();
                 form_TicTacToe.setVisible(false);
+                
+                form_Sudoku = new Form_Sudoku();
+                form_Sudoku.setVisible(false);
             }
         });
     }
