@@ -27,21 +27,41 @@ public class Form_Dictionary extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        button_MainMenu = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        button_MainMenu.setText("Main Menu");
+        button_MainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_MainMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(button_MainMenu)
+                .addContainerGap(293, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(button_MainMenu)
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button_MainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_MainMenuActionPerformed
+        Form_Main.form_Main.setVisible(true);
+        Form_Main.form_Dictionary.setVisible(false);
+    }//GEN-LAST:event_button_MainMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +99,6 @@ public class Form_Dictionary extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_MainMenu;
     // End of variables declaration//GEN-END:variables
 }
