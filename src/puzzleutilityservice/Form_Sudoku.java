@@ -5,6 +5,11 @@
  */
 package puzzleutilityservice;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  *
  * @author Brad
@@ -12,16 +17,16 @@ package puzzleutilityservice;
 public class Form_Sudoku extends javax.swing.JFrame {
 
     
-    
+
     
     /**
      * Creates new form Form_Sudoku
      */
+    public javax.swing.JFormattedTextField[][] board;
+    
     public Form_Sudoku() {
         initComponents();
-        System.out.println("Sudoku Created");
-        
-        javax.swing.JFormattedTextField[][] board =  //i j format 
+        javax.swing.JFormattedTextField[][] b =  //i j format 
         {
             {b00, b01, b02, b03, b04, b05, b06, b07, b08},
             {b10, b11, b12, b13, b14, b15, b16, b17, b18},
@@ -35,13 +40,10 @@ public class Form_Sudoku extends javax.swing.JFrame {
 
         };
         
-        for(int i = 0; i < 9; i++)
-        {
-            for(int j = 0; j < 9; j++)
-            {
-                board[i][j].setText(j+"");
-            }
-        }
+        this.board = b;
+       
+        
+        
         
         
         
@@ -139,6 +141,11 @@ public class Form_Sudoku extends javax.swing.JFrame {
         b80 = new javax.swing.JFormattedTextField();
         b64 = new javax.swing.JFormattedTextField();
         b65 = new javax.swing.JFormattedTextField();
+        button_Check = new javax.swing.JButton();
+        button_Generate = new javax.swing.JButton();
+        button_Solve = new javax.swing.JButton();
+        statusText = new javax.swing.JTextField();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -716,17 +723,30 @@ public class Form_Sudoku extends javax.swing.JFrame {
         }
         b65.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        button_Check.setText("Check Board");
+        button_Check.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_CheckActionPerformed(evt);
+            }
+        });
+
+        button_Generate.setText("Generate Board");
+        button_Generate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_GenerateActionPerformed(evt);
+            }
+        });
+
+        button_Solve.setText("Solve Board");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(toMainMenu)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusText)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -815,12 +835,6 @@ public class Form_Sudoku extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(b33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(b34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(b35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(b43, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(b44, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -831,7 +845,13 @@ public class Form_Sudoku extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(b54, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(b55, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(b55, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(b33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(b34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(b35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -914,8 +934,17 @@ public class Form_Sudoku extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(b07, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(b08, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(b08, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(toMainMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(button_Check, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(button_Generate, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(button_Solve, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addComponent(filler1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -961,7 +990,9 @@ public class Form_Sudoku extends javax.swing.JFrame {
                             .addComponent(b26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1043,9 +1074,17 @@ public class Form_Sudoku extends javax.swing.JFrame {
                             .addComponent(b86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b87, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b88, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(toMainMenu)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button_Check)
+                    .addComponent(button_Generate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(toMainMenu)
+                    .addComponent(button_Solve))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -1056,6 +1095,113 @@ public class Form_Sudoku extends javax.swing.JFrame {
         Form_Main.form_Sudoku.setVisible(false);
     }//GEN-LAST:event_toMainMenuActionPerformed
 
+    private void button_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_GenerateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_GenerateActionPerformed
+
+    private void button_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_CheckActionPerformed
+        
+        //create 9 size array for each row, column, and box, sort it, and check to see if they contain 1-9
+        //if any are false, whole thing is false
+        //if all are true, then board is true
+        
+        
+        int[] row = new int[9];
+        int[] collumn = new int[9];
+        int[] box = new int[9];
+        
+        int[] holding = new int[9];
+        
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(!this.board[i][j].getText().equals(" "))
+                {
+                    row[i] = Integer.parseInt(board[i][j].getText());
+                }
+                
+                if(!board[j][i].getText().equals(" "))
+                {
+                    collumn[i] = Integer.parseInt(board[j][i].getText());
+                }
+                  
+                if(!board[(i / 3) * 3 + j / 3][i * 3 % 9 + j % 3].getText().equals(" "))
+                {
+                  box[j] = Integer.parseInt(board[(i / 3) * 3 + j / 3][i * 3 % 9 + j % 3].getText()); //cool formula found on Stack Overflow    
+                }
+                   
+                
+            }
+            if(!verifyUnique(row) || !verifyUnique(collumn) || !verifyUnique(box))
+            {
+                resetZeros();
+                statusText.setText("Invalid Board");
+                return;
+            }
+                    
+        }
+        resetZeros();
+        statusText.setText("Valid Board");
+        return;
+        
+        
+        
+    }//GEN-LAST:event_button_CheckActionPerformed
+
+    public boolean verifyUnique(int[] ia)
+    {
+      
+        Arrays.sort(ia);
+        ArrayList<Integer> usedValues;
+        usedValues = new ArrayList<>();
+        
+        
+        for(int i = 0; i < ia.length; i++)
+        {
+            if(ia[i] == 0)
+            {
+                continue;
+            }
+            for(int j = 0; j < usedValues.size(); j++)
+            {
+                if(usedValues.get(j) == ia[i])
+                {
+                    
+                    return false;
+                }
+                
+                    
+            }
+            usedValues.add(ia[i]);    
+                
+        }
+        
+        return true;   
+            
+            
+    }
+    public void resetZeros(){
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+        
+               
+                if(board[i][j].getText().equals("0"))
+                {
+                    
+                    board[i][j].setText(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+        
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -1173,6 +1319,11 @@ public class Form_Sudoku extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField b86;
     private javax.swing.JFormattedTextField b87;
     private javax.swing.JFormattedTextField b88;
+    private javax.swing.JButton button_Check;
+    private javax.swing.JButton button_Generate;
+    private javax.swing.JButton button_Solve;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.JTextField statusText;
     private javax.swing.JButton toMainMenu;
     // End of variables declaration//GEN-END:variables
 }
