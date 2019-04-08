@@ -28,32 +28,42 @@ public class Form_Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        button_Sudoku = new javax.swing.JButton();
+        button_Scrabble = new javax.swing.JButton();
+        button_TTT = new javax.swing.JButton();
+        button_Dictionary = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Puzzle Game Utility Service");
 
-        jButton1.setText("Sudoku");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_Sudoku.setText("Sudoku");
+        button_Sudoku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_SudokuActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Scrable");
-
-        jButton3.setText("TicTacToe");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        button_Scrabble.setText("Scrabble");
+        button_Scrabble.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                button_ScrabbleActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Dictionary");
+        button_TTT.setText("TicTacToe");
+        button_TTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_TTTActionPerformed(evt);
+            }
+        });
+
+        button_Dictionary.setText("Dictionary");
+        button_Dictionary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_DictionaryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,14 +76,14 @@ public class Form_Main extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button_Sudoku, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(button_Scrabble, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button_TTT, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(button_Dictionary, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -83,33 +93,45 @@ public class Form_Main extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(button_Scrabble, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_Sudoku, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(button_TTT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_Dictionary, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button_SudokuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SudokuActionPerformed
         form_Sudoku.setVisible(true);
         form_Main.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_button_SudokuActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void button_TTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_TTTActionPerformed
         form_TicTacToe.setVisible(true);
         form_Main.setVisible(false);
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_button_TTTActionPerformed
+
+    private void button_ScrabbleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_ScrabbleActionPerformed
+        form_Scrabble.setVisible(true);
+        form_Main.setVisible(false);
+    }//GEN-LAST:event_button_ScrabbleActionPerformed
+
+    private void button_DictionaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DictionaryActionPerformed
+        form_Dictionary.setVisible(true);
+        form_Main.setVisible(false);
+    }//GEN-LAST:event_button_DictionaryActionPerformed
 
     
     public static Form_Sudoku form_Sudoku;
     public static Form_TicTacToe form_TicTacToe;
     public static Form_Main form_Main;
+    public static Form_Dictionary form_Dictionary;
+    public static Form_Scrabble form_Scrabble;
     
     /**
      * @param args the command line arguments
@@ -149,15 +171,21 @@ public class Form_Main extends javax.swing.JFrame {
                 
                 form_Sudoku = new Form_Sudoku();
                 form_Sudoku.setVisible(false);
+                
+                form_Dictionary = new Form_Dictionary();
+                form_Dictionary.setVisible(false);
+                
+                form_Scrabble = new Form_Scrabble();
+                form_Scrabble.setVisible(false);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton button_Dictionary;
+    private javax.swing.JButton button_Scrabble;
+    private javax.swing.JButton button_Sudoku;
+    private javax.swing.JButton button_TTT;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
