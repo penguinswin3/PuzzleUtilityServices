@@ -11,7 +11,7 @@
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified"
-              targetNamespace="http://tempConvertURI.org/">
+              targetNamespace="http://PuzzleUtilityURI.org/">
       <s:element name="c2f">
         <s:complexType>
           <s:sequence>
