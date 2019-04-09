@@ -1129,6 +1129,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Solve Board"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_SolveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="statusText">
     </Component>

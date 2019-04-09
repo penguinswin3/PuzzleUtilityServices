@@ -25,6 +25,7 @@ public class Form_Sudoku extends javax.swing.JFrame {
      * Creates new form Form_Sudoku
      */
     public javax.swing.JFormattedTextField[][] board;
+    public int mostRecentlyGenerated = 0;
     
     public Form_Sudoku() {
         initComponents();
@@ -740,6 +741,11 @@ public class Form_Sudoku extends javax.swing.JFrame {
         });
 
         button_Solve.setText("Solve Board");
+        button_Solve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_SolveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1102,6 +1108,12 @@ public class Form_Sudoku extends javax.swing.JFrame {
         
         Random rand = new Random();
         int num = rand.nextInt(3);
+        while(num == mostRecentlyGenerated)
+        {
+            num = rand.nextInt(3);
+        }
+        
+        mostRecentlyGenerated = num;
         
         //statusText.setText(num + "");
         
@@ -1154,10 +1166,7 @@ public class Form_Sudoku extends javax.swing.JFrame {
             {"","","","","","","","",""}
         }; */
         
-        
-        
-        
-        
+ 
         
             for(int i = 0; i < 9; i++)
             {
@@ -1190,13 +1199,9 @@ public class Form_Sudoku extends javax.swing.JFrame {
         
     }//GEN-LAST:event_button_GenerateActionPerformed
 
-    private void button_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_CheckActionPerformed
-        
-        //create 9 size array for each row, column, and box, sort it, and check to see if they contain 1-9
-        //if any are false, whole thing is false
-        //if all are true, then board is true
-        
-        
+    
+    public boolean checkBoard(int brd[][])
+    {
         int[] row = new int[9];
         int[] collumn = new int[9];
         int[] box = new int[9];
@@ -1216,56 +1221,26 @@ public class Form_Sudoku extends javax.swing.JFrame {
             
             for(int j = 0; j < 9; j++)
             {
-                
-                if(!this.board[i][j].getText().equals(" "))
-                {
-                    row[i] = Integer.parseInt(board[i][j].getText());
-                }
-                
-                if(!board[j][i].getText().equals(" "))
-                {
-                    collumn[i] = Integer.parseInt(board[j][i].getText());
-                }
-                  
-              
+                row[i] = brd[i][j];   
+                collumn[i] = brd[j][i];
+                                
                 x = (i / 3) * 3 + j / 3;
                 y = i * 3 % 9 + j % 3;
                 
-                //System.out.println("[" + x + "],[" + y + "]"); 
-                if(!board[x][y].getText().equals(" "))
-                {
-                  System.out.println(board[x][y].getText());
-                  box[j] = Integer.parseInt(board[x][y].getText()); //cool formula found on Stack Overflow    
-                }
+                box[j] = brd[x][y]; //cool formula found on Stack Overflow    
+                
                    
                 
             }
             
-            if(!verifyUnique(row))
+            if(!verifyUnique(row) || !verifyUnique(collumn) || !verifyUnique(box))
             {
-                board[i][0].setBackground(Color.red);
-                board[i][8].setBackground(Color.red);
+     
                 resetZeros();
                 statusText.setText("Invalid Board");
-                return;
+                return false;
             }
-            else if(!verifyUnique(collumn))
-            {
-                board[0][i].setBackground(Color.red);
-                board[8][i].setBackground(Color.red);
-                resetZeros();
-                statusText.setText("Invalid Board");
-                return;
-            }
-            else if(!verifyUnique(box))
-            {
-                board[(i / 3) * 3 + 0 / 3][i * 3 % 9 + 2 % 3].setBackground(Color.red);
-                board[(i / 3) * 3 + 2 / 3][i * 3 % 9 + 0 % 3].setBackground(Color.red);
-                resetZeros();
-                statusText.setText("Invalid Board");
-                return; 
-            }
-                    
+       
         }
       
         
@@ -1274,12 +1249,87 @@ public class Form_Sudoku extends javax.swing.JFrame {
         
         resetZeros();
         statusText.setText("Valid Board");
-        return;
+        return true;
+        
+    }
+    
+    
+    private void button_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_CheckActionPerformed
+        
+        //create 9 size array for each row, column, and box, sort it, and check to see if they contain 1-9
+        //if any are false, whole thing is false
+        //if all are true, then board is true
+        
+        if (checkBoard(generateIntBoard()))
+            statusText.setText("Valid Board");
+        else
+            statusText.setText("Invalid Board");
+        
+        
+        
+        
         
         
         
     }//GEN-LAST:event_button_CheckActionPerformed
 
+    public int[][] generateIntBoard()
+    {
+        int[][] board = new int[9][9];
+        
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(this.board[i][j].getText().equals(" ") || this.board[i][j].getText().isEmpty())
+                {
+                    board[i][j] = 0;
+                }
+                else
+                {
+                    board[i][j] = Integer.parseInt(this.board[i][j].getText());
+                }
+            }
+        }
+        return board;
+        
+    }
+    
+    
+    
+    
+    private void button_SolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SolveActionPerformed
+       
+        //solve board logic 
+        int[][] brd = generateIntBoard();
+        solveBoard(brd);
+        
+    }//GEN-LAST:event_button_SolveActionPerformed
+
+    
+    public boolean solveBoard(int[][] board)
+    {
+         for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+            if (board[row][column] == 0) {
+                for (int k = 1; k <= 9; k++) {
+                    board[row][column] = k;
+                    if (checkBoard(board) && solveBoard(board)) {
+                        this.board[row][column].setText("" +k);
+                        return true;
+                    }
+                    board[row][column] = 0;
+                }
+                
+                return false;
+            }
+        }
+    }
+         return true;
+   }
+         
+    
+    
     public boolean verifyUnique(int[] ia)
     {
 
