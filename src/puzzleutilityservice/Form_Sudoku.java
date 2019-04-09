@@ -5,10 +5,12 @@
  */
 package puzzleutilityservice;
 
+import java.awt.Color;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  *
@@ -1096,7 +1098,96 @@ public class Form_Sudoku extends javax.swing.JFrame {
     }//GEN-LAST:event_toMainMenuActionPerformed
 
     private void button_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_GenerateActionPerformed
-        // TODO add your handling code here:
+        //choose a random board from a preset list of boards
+        
+        Random rand = new Random();
+        int num = rand.nextInt(3);
+        
+        //statusText.setText(num + "");
+        
+        
+        String[][] b1 = {
+            {"2","4","7","","9","1","","6","8"},
+            {"1","","5","7","6","","3","",""},
+            {"8","6","","4","","","","","7"},
+            {"9","","","2","","6","","",""},
+            {"","","","9","4","7","6","8",""},
+            {"6","","4","","5","","","1","9"},
+            {"7","","","","3","","9","2",""},
+            {"4","","9","6","","","","",""},
+            {"","","","","","","4","","3"}
+        }; 
+        
+        String[][] b2 = {
+            {"","8","","","1","3","4","",""},
+            {"4","2","","6","8","","","",""},
+            {"","","1","","5","4","","8","3"},
+            {"1","9","","","","8","7","",""},
+            {"","4","7","","","2","5","","8"},
+            {"","5","","","","9","","3",""},
+            {"2","","9","3","","5","","7",""},
+            {"5","","","7","2","","","","9"},
+            {"7","3","","","","","2","","6"}
+        }; 
+        String[][] b3 = {
+            {"2","","","","","","7","8","3"},
+            {"","","","","","","","","5"},
+            {"5","","","","6","","","9",""},
+            {"6","","4","7","","","3","",""},
+            {"","1","2","","9","","","","7"},
+            {"","5","","","","2","","","1"},
+            {"","","","9","4","","1","","6"},
+            {"9","","","1","3","8","5","",""},
+            {"","","","","7","","","4",""}
+        };
+        
+        
+       /* String[][] bn = {
+            {"","","","","","","","",""},
+            {"","","","","","","","",""},
+            {"","","","","","","","",""},
+            {"","","","","","","","",""},
+            {"","","","","","","","",""},
+            {"","","","","","","","",""},
+            {"","","","","","","","",""},
+            {"","","","","","","","",""},
+            {"","","","","","","","",""}
+        }; */
+        
+        
+        
+        
+        
+        
+            for(int i = 0; i < 9; i++)
+            {
+                for(int j = 0; j < 9; j++)
+                {
+                    if(num == 0)
+                    {
+                        
+                        board[i][j].setText(b1[i][j]);
+                    }
+                    else if (num == 1)
+                    {
+                        board[i][j].setText(b2[i][j]);
+                    }
+                    else if(num == 2)
+                    {
+                        board[i][j].setText(b3[i][j]);
+                    }
+                }
+            }
+            
+
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_button_GenerateActionPerformed
 
     private void button_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_CheckActionPerformed
@@ -1110,12 +1201,22 @@ public class Form_Sudoku extends javax.swing.JFrame {
         int[] collumn = new int[9];
         int[] box = new int[9];
         
-        int[] holding = new int[9];
+        int x, y;
         
         for(int i = 0; i < 9; i++)
         {
+            for(int k = 0; k < 9; k++)
+            {
+                row[k] = 0;
+                collumn[k] = 0;
+                box[k] = 0;
+            }
+            
+            
+            
             for(int j = 0; j < 9; j++)
             {
+                
                 if(!this.board[i][j].getText().equals(" "))
                 {
                     row[i] = Integer.parseInt(board[i][j].getText());
@@ -1126,21 +1227,51 @@ public class Form_Sudoku extends javax.swing.JFrame {
                     collumn[i] = Integer.parseInt(board[j][i].getText());
                 }
                   
-                if(!board[(i / 3) * 3 + j / 3][i * 3 % 9 + j % 3].getText().equals(" "))
+              
+                x = (i / 3) * 3 + j / 3;
+                y = i * 3 % 9 + j % 3;
+                
+                //System.out.println("[" + x + "],[" + y + "]"); 
+                if(!board[x][y].getText().equals(" "))
                 {
-                  box[j] = Integer.parseInt(board[(i / 3) * 3 + j / 3][i * 3 % 9 + j % 3].getText()); //cool formula found on Stack Overflow    
+                  System.out.println(board[x][y].getText());
+                  box[j] = Integer.parseInt(board[x][y].getText()); //cool formula found on Stack Overflow    
                 }
                    
                 
             }
-            if(!verifyUnique(row) || !verifyUnique(collumn) || !verifyUnique(box))
+            
+            if(!verifyUnique(row))
             {
+                board[i][0].setBackground(Color.red);
+                board[i][8].setBackground(Color.red);
                 resetZeros();
                 statusText.setText("Invalid Board");
                 return;
             }
+            else if(!verifyUnique(collumn))
+            {
+                board[0][i].setBackground(Color.red);
+                board[8][i].setBackground(Color.red);
+                resetZeros();
+                statusText.setText("Invalid Board");
+                return;
+            }
+            else if(!verifyUnique(box))
+            {
+                board[(i / 3) * 3 + 0 / 3][i * 3 % 9 + 2 % 3].setBackground(Color.red);
+                board[(i / 3) * 3 + 2 / 3][i * 3 % 9 + 0 % 3].setBackground(Color.red);
+                resetZeros();
+                statusText.setText("Invalid Board");
+                return; 
+            }
                     
         }
+      
+        
+        
+        
+        
         resetZeros();
         statusText.setText("Valid Board");
         return;
@@ -1151,10 +1282,11 @@ public class Form_Sudoku extends javax.swing.JFrame {
 
     public boolean verifyUnique(int[] ia)
     {
-      
+
         Arrays.sort(ia);
         ArrayList<Integer> usedValues;
         usedValues = new ArrayList<>();
+        
         
         
         for(int i = 0; i < ia.length; i++)
@@ -1167,7 +1299,7 @@ public class Form_Sudoku extends javax.swing.JFrame {
             {
                 if(usedValues.get(j) == ia[i])
                 {
-                    
+                  
                     return false;
                 }
                 
@@ -1194,7 +1326,7 @@ public class Form_Sudoku extends javax.swing.JFrame {
                     board[i][j].setText(" ");
                 }
             }
-            System.out.println();
+            
         }
     }
         
