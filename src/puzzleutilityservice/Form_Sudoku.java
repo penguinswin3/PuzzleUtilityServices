@@ -1311,18 +1311,19 @@ public class Form_Sudoku extends javax.swing.JFrame {
     
     public boolean solveBoard(int[][] board)
     {
-         for (int row = 0; row < 9; row++) {
-            for (int column = 0; column < 9; column++) {
-                if (board[row][column] == 0) {
-                    for (int k = 1; k <= 9; k++) {
-                        board[row][column] = k;
-                        this.board[row][column].setText("" +k);
-                        if (checkBoard(board) && solveBoard(board)) {
-                          System.out.println(row +", " + column);
-                          
-                          return true;
+        
+        //This is the bactracking algorithm. Based off of other designs on the web
+         for (int row = 0; row < 9; row++) { //loop over rows
+            for (int column = 0; column < 9; column++) { //loop over columns 
+                if (board[row][column] == 0) { //check to see if initial value is 0. If it's not 0, that means it was a constant and should be ignored, as it is gaurenteed to be "correct"
+                    for (int k = 1; k <= 9; k++) { //loop over all possible values (1-9)
+                        board[row][column] = k; //set value to k, the incrementing of each possible value 
+                        this.board[row][column].setText("" +k); //updates the display to reflect this value 
+                        if (checkBoard(board) && solveBoard(board)) { //checks that the current board is a valid board state. Also, checks to make sure all recursive boards after it are valid board states 
+                          //System.out.println(row +", " + column);
+                          return true; //if true, it's a valid board state! 
                         }
-                        board[row][column] = 0;
+                        board[row][column] = 0; //if not a valid board state, reset value, allowing for the next increment of k to be used, and then try again.
                     }
                 
                     return false;
@@ -1341,7 +1342,7 @@ public class Form_Sudoku extends javax.swing.JFrame {
         ArrayList<Integer> usedValues;
         usedValues = new ArrayList<>();
         
-        System.out.println(ia.toString());
+     
         
         for(int i = 0; i < ia.length; i++)
         {
