@@ -11,13 +11,13 @@ import javax.xml.ws.ResponseWrapper;
 @WebService(name = "PuzzleUtilityService", targetNamespace = "http://PuzzleUtilityURI.org/")
 
 public class PuzzleUtilityService {
-    @WebMethod(operationName = "c2f",
-               action = "http://tempConvertURI.org/c2f")
-    @WebResult(name = "c2fResult",
-               targetNamespace = "http://tempConvertURI.org/")
-    @RequestWrapper(localName = "c2f",
-                    targetNamespace = "http://tempConvertURI.org/",
-                    className = "ch02.TempConvService.C2F")
+    @WebMethod(operationName = "Sudoku_CheckGame",
+               action = "http://PuzzleUtilityURI.org/Sudoku_CheckGame")
+    @WebResult(name = "booleanResult",
+               targetNamespace = "http://PuzzleUtilityURI.org/")
+    @RequestWrapper(localName = "Sudoku_CheckGame",
+                    targetNamespace = "http://PuzzleUtilityURI.org/",
+                    className = "ServerFiles.Sudoku_CheckGame")
     @ResponseWrapper(localName = "c2fResponse",
                      targetNamespace = "http://tempConvertURI.org/",
                      className = "ch02.TempConvService.C2FResponse")
