@@ -1203,39 +1203,41 @@ public class Form_Sudoku extends javax.swing.JFrame {
     public boolean checkBoard(int brd[][])
     {
         int[] row = new int[9];
-        int[] collumn = new int[9];
+        int[] column = new int[9];
         int[] box = new int[9];
         
         int x, y;
         
         for(int i = 0; i < 9; i++)
         {
+            //clear arrays from before
             for(int k = 0; k < 9; k++)
             {
                 row[k] = 0;
-                collumn[k] = 0;
+                column[k] = 0;
                 box[k] = 0;
             }
             
-            
-            
             for(int j = 0; j < 9; j++)
             {
-                row[i] = brd[i][j];   
-                collumn[i] = brd[j][i];
+                row[j] = brd[i][j];   
+                column[j] = brd[j][i];
                                 
                 x = (i / 3) * 3 + j / 3;
                 y = i * 3 % 9 + j % 3;
                 
-                box[j] = brd[x][y]; //cool formula found on Stack Overflow    
-                
+                box[j] = brd[x][y]; 
                    
+                //System.out.println("Row:\t[" + row[j] + "]");
+                //System.out.println("Column:\t[" + column[j] + "]");
+                //System.out.println("Box:\t[" + box[j] + "]");
                 
             }
             
-            if(!verifyUnique(row) || !verifyUnique(collumn) || !verifyUnique(box))
+            //System.out.println("-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-");
+            
+            if(!verifyUnique(row) || !verifyUnique(column) || !verifyUnique(box))
             {
-     
                 resetZeros();
                 statusText.setText("Invalid Board");
                 return false;
@@ -1310,18 +1312,20 @@ public class Form_Sudoku extends javax.swing.JFrame {
     public boolean solveBoard(int[][] board)
     {
          for (int row = 0; row < 9; row++) {
-        for (int column = 0; column < 9; column++) {
-            if (board[row][column] == 0) {
-                for (int k = 1; k <= 9; k++) {
-                    board[row][column] = k;
-                    if (checkBoard(board) && solveBoard(board)) {
+            for (int column = 0; column < 9; column++) {
+                if (board[row][column] == 0) {
+                    for (int k = 1; k <= 9; k++) {
+                        board[row][column] = k;
                         this.board[row][column].setText("" +k);
-                        return true;
+                        if (checkBoard(board) && solveBoard(board)) {
+                          System.out.println(row +", " + column);
+                          
+                          return true;
+                        }
+                        board[row][column] = 0;
                     }
-                    board[row][column] = 0;
-                }
                 
-                return false;
+                    return false;
             }
         }
     }
@@ -1337,7 +1341,7 @@ public class Form_Sudoku extends javax.swing.JFrame {
         ArrayList<Integer> usedValues;
         usedValues = new ArrayList<>();
         
-        
+        System.out.println(ia.toString());
         
         for(int i = 0; i < ia.length; i++)
         {
