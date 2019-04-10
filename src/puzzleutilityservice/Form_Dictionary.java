@@ -103,7 +103,7 @@ public class Form_Dictionary extends javax.swing.JFrame {
             // TODO add your handling code here:
             //compare two text files: https://javaconceptoftheday.com/compare-two-text-files-in-java/
             BufferedReader br1 = new BufferedReader(new FileReader(jFileChooser1.getSelectedFile()));
-            BufferedReader br2 = new BufferedReader(new FileReader("D:\\Documents\\School\\Super Senior Year\\Spring\\SWENG 465\\Puzzle Game Utility Service\\PuzzleUtilityServices-master\\PuzzleUtilityServices-master\\src\\puzzleutilityservice\\Collins Scrabble Words (2015).txt"));
+            BufferedReader br2 = new BufferedReader(new FileReader("src/puzzleutilityservice/words.txt"));
             String line1 = br1.readLine();
             String line2 = br2.readLine();
             Scanner sc = new Scanner(jFileChooser1.getSelectedFile());
