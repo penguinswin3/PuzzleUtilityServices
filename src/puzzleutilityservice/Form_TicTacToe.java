@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package puzzleutilityservice;
-
 /**
  * @author Nick Brougher
  * @author Brad
  */
 public class Form_TicTacToe extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Form_TicTacToe
-     */
     public Form_TicTacToe() { initComponents(); }
     static String[] board = {"", "", "", "", "", "", "", "", ""};
     String player = "X"; 
