@@ -32,7 +32,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="button_MainMenu" min="-2" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextField1" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextField1" min="-2" pref="313" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -78,6 +78,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

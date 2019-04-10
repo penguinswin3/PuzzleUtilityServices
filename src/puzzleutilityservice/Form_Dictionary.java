@@ -8,6 +8,8 @@ package puzzleutilityservice;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,6 +57,8 @@ public class Form_Dictionary extends javax.swing.JFrame {
             }
         });
 
+        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +72,7 @@ public class Form_Dictionary extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(button_MainMenu)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -97,9 +101,45 @@ public class Form_Dictionary extends javax.swing.JFrame {
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         try {
             // TODO add your handling code here:
+            //compare two text files: https://javaconceptoftheday.com/compare-two-text-files-in-java/
             BufferedReader br1 = new BufferedReader(new FileReader(jFileChooser1.getSelectedFile()));
+            BufferedReader br2 = new BufferedReader(new FileReader("D:\\Documents\\School\\Super Senior Year\\Spring\\SWENG 465\\Puzzle Game Utility Service\\PuzzleUtilityServices-master\\PuzzleUtilityServices-master\\src\\puzzleutilityservice\\Collins Scrabble Words (2015).txt"));
+            String line1 = br1.readLine();
+            String line2 = br2.readLine();
+            Scanner sc = new Scanner(jFileChooser1.getSelectedFile());
+            boolean areEqual = true;
+            int lineNum = 1;
+            
+            while (line1 != null || line2 != null) {
+                if(line1 == null || line2 == null) {
+                    areEqual = false;
+                    break;
+                }
+                else if(!line1.equalsIgnoreCase(line2)) {
+                    areEqual = false;
+                    break;
+                }
+                
+                
+                line1 = br1.readLine();
+                line2 = br2.readLine();
+                lineNum++;
+            }
+            
+            if (areEqual) {
+                jFormattedTextField1.setText("Valid List.");
+            }
+            else {
+                jFormattedTextField1.setText("Input File contains an invalid word");
+            }
+            
+            br1.close();
+            br2.close();
+            
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Form_Dictionary.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.format("File not found.\n");
+        } catch (IOException ex) {
+            System.err.format("File not found.\n");
         }
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
