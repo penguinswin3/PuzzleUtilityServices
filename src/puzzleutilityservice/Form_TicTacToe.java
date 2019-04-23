@@ -378,8 +378,8 @@ public class Form_TicTacToe extends javax.swing.JFrame {
     
     private void switchPlayer()
     {
-        if(player == "X") { player = "O"; }
-        else { player = "X"; }
+        if(player == "X") { player = "O"; turnSymbol.setText("O");}
+        else { player = "X"; turnSymbol.setText("X");}
     }
     
     private void FoundWinner(String player)

@@ -7,10 +7,12 @@ package puzzleutilityservice;
 
 import java.awt.Color;
 import java.awt.List;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
+
 
 /**
  *
@@ -18,39 +20,31 @@ import java.util.Random;
  */
 public class Form_Sudoku extends javax.swing.JFrame {
 
-    
-
-    
     /**
      * Creates new form Form_Sudoku
      */
     public javax.swing.JFormattedTextField[][] board;
     public int mostRecentlyGenerated = 0;
-    
+
     public Form_Sudoku() {
         initComponents();
-        javax.swing.JFormattedTextField[][] b =  //i j format 
-        {
-            {b00, b01, b02, b03, b04, b05, b06, b07, b08},
-            {b10, b11, b12, b13, b14, b15, b16, b17, b18},
-            {b20, b21, b22, b23, b24, b25, b26, b27, b28},
-            {b30, b31, b32, b33, b34, b35, b36, b37, b38},
-            {b40, b41, b42, b43, b44, b45, b46, b47, b48},
-            {b50, b51, b52, b53, b54, b55, b56, b57, b58},
-            {b60, b61, b62, b63, b64, b65, b66, b67, b68},
-            {b70, b71, b72, b73, b74, b75, b76, b77, b78},
-            {b80, b81, b82, b83, b84, b85, b86, b87, b88}
+        javax.swing.JFormattedTextField[][] b
+                = //i j format 
+                {
+                    {b00, b01, b02, b03, b04, b05, b06, b07, b08},
+                    {b10, b11, b12, b13, b14, b15, b16, b17, b18},
+                    {b20, b21, b22, b23, b24, b25, b26, b27, b28},
+                    {b30, b31, b32, b33, b34, b35,  b36, b37, b38},
+                    {b40, b41, b42, b43, b44, b45, b46, b47, b48},
+                    {b50, b51, b52, b53, b54, b55, b56, b57, b58},
+                    {b60, b61, b62, b63, b64, b65, b66, b67, b68},
+                    {b70, b71, b72, b73, b74, b75, b76, b77, b78},
+                    {b80, b81, b82, b83, b84, b85, b86, b87, b88}
 
-        };
-        
+                };
+
         this.board = b;
-       
-        
-        
-        
-        
-        
-        
+
     }
 
     /**
@@ -1105,56 +1099,75 @@ public class Form_Sudoku extends javax.swing.JFrame {
 
     private void button_GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_GenerateActionPerformed
         //choose a random board from a preset list of boards
+
+        //do SOAP Call
+        
+        /*SudokuService service = new SudokuService();
+        ServiceSoap port = service.getServiceSoap();
+        
+        Board b = port.generateBoard(new BigInteger("0"));
+        
+        */
+      
+        
+        
+        
+        /*
+        
+        
+        System.out.println(b.getColumn().get(0).toString());*/
+        
+        
+        
+        
+        
+        
         
         Random rand = new Random();
         int num = rand.nextInt(3);
-        while(num == mostRecentlyGenerated)
-        {
+        while (num == mostRecentlyGenerated) {
             num = rand.nextInt(3);
         }
-        
+
         mostRecentlyGenerated = num;
-        
+
         //statusText.setText(num + "");
-        
-        
         String[][] b1 = {
-            {"2","4","7","","9","1","","6","8"},
-            {"1","","5","7","6","","3","",""},
-            {"8","6","","4","","","","","7"},
-            {"9","","","2","","6","","",""},
-            {"","","","9","4","7","6","8",""},
-            {"6","","4","","5","","","1","9"},
-            {"7","","","","3","","9","2",""},
-            {"4","","9","6","","","","",""},
-            {"","","","","","","4","","3"}
-        }; 
-        
-        String[][] b2 = {
-            {"","8","","","1","3","4","",""},
-            {"4","2","","6","8","","","",""},
-            {"","","1","","5","4","","8","3"},
-            {"1","9","","","","8","7","",""},
-            {"","4","7","","","2","5","","8"},
-            {"","5","","","","9","","3",""},
-            {"2","","9","3","","5","","7",""},
-            {"5","","","7","2","","","","9"},
-            {"7","3","","","","","2","","6"}
-        }; 
-        String[][] b3 = {
-            {"2","","","","","","7","8","3"},
-            {"","","","","","","","","5"},
-            {"5","","","","6","","","9",""},
-            {"6","","4","7","","","3","",""},
-            {"","1","2","","9","","","","7"},
-            {"","5","","","","2","","","1"},
-            {"","","","9","4","","1","","6"},
-            {"9","","","1","3","8","5","",""},
-            {"","","","","7","","","4",""}
+            {"2", "4", "7", "", "9", "1", "", "6", "8"},
+            {"1", "", "5", "7", "6", "", "3", "", ""},
+            {"8", "6", "", "4", "", "", "", "", "7"},
+            {"9", "", "", "2", "", "6", "", "", ""},
+            {"", "", "", "9", "4", "7", "6", "8", ""},
+            {"6", "", "4", "", "5", "", "", "1", "9"},
+            {"7", "", "", "", "3", "", "9", "2", ""},
+            {"4", "", "9", "6", "", "", "", "", ""},
+            {"", "", "", "", "", "", "4", "", "3"}
         };
-        
-        
-       /* String[][] bn = {
+
+        String[][] b2 = {
+            {"", "8", "", "", "1", "3", "4", "", ""},
+            {"4", "2", "", "6", "8", "", "", "", ""},
+            {"", "", "1", "", "5", "4", "", "8", "3"},
+            {"1", "9", "", "", "", "8", "7", "", ""},
+            {"", "4", "7", "", "", "2", "5", "", "8"},
+            {"", "5", "", "", "", "9", "", "3", ""},
+            {"2", "", "9", "3", "", "5", "", "7", ""},
+            {"5", "", "", "7", "2", "", "", "", "9"},
+            {"7", "3", "", "", "", "", "2", "", "6"}
+        };
+        String[][] b3 = {
+            {"2", "", "", "", "", "", "7", "8", "3"},
+            {"", "", "", "", "", "", "", "", "5"},
+            {"5", "", "", "", "6", "", "", "9", ""},
+            {"6", "", "4", "7", "", "", "3", "", ""},
+            {"", "1", "2", "", "9", "", "", "", "7"},
+            {"", "5", "", "", "", "2", "", "", "1"},
+            {"", "", "", "9", "4", "", "1", "", "6"},
+            {"9", "", "", "1", "3", "8", "5", "", ""},
+            {"", "", "", "", "7", "", "", "4", ""}
+        };
+
+        /* String[][] bn = {
             {"","","","","","","","",""},
             {"","","","","","","","",""},
             {"","","","","","","","",""},
@@ -1165,230 +1178,167 @@ public class Form_Sudoku extends javax.swing.JFrame {
             {"","","","","","","","",""},
             {"","","","","","","","",""}
         }; */
-        
- 
-        
-            for(int i = 0; i < 9; i++)
-            {
-                for(int j = 0; j < 9; j++)
-                {
-                    if(num == 0)
-                    {
-                        
-                        board[i][j].setText(b1[i][j]);
-                    }
-                    else if (num == 1)
-                    {
-                        board[i][j].setText(b2[i][j]);
-                    }
-                    else if(num == 2)
-                    {
-                        board[i][j].setText(b3[i][j]);
-                    }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (num == 0) {
+
+                    board[i][j].setText(b1[i][j]);
+                } else if (num == 1) {
+                    board[i][j].setText(b2[i][j]);
+                } else if (num == 2) {
+                    board[i][j].setText(b3[i][j]);
                 }
             }
-            
+        }
 
-        
-        
-        
-        
-        
-        
-        
-        
+
     }//GEN-LAST:event_button_GenerateActionPerformed
 
-    
-    public boolean checkBoard(int brd[][])
-    {
+    public boolean checkBoard(int brd[][]) {
         int[] row = new int[9];
         int[] column = new int[9];
         int[] box = new int[9];
-        
+
         int x, y;
-        
-        for(int i = 0; i < 9; i++)
-        {
+
+        for (int i = 0; i < 9; i++) {
             //clear arrays from before
-            for(int k = 0; k < 9; k++)
-            {
+            for (int k = 0; k < 9; k++) {
                 row[k] = 0;
                 column[k] = 0;
                 box[k] = 0;
             }
-            
-            for(int j = 0; j < 9; j++)
-            {
-                row[j] = brd[i][j];   
+
+            for (int j = 0; j < 9; j++) {
+                row[j] = brd[i][j];
                 column[j] = brd[j][i];
-                                
+
                 x = (i / 3) * 3 + j / 3;
                 y = i * 3 % 9 + j % 3;
-                
-                box[j] = brd[x][y]; 
-                   
+
+                box[j] = brd[x][y];
+
                 //System.out.println("Row:\t[" + row[j] + "]");
                 //System.out.println("Column:\t[" + column[j] + "]");
                 //System.out.println("Box:\t[" + box[j] + "]");
-                
             }
-            
+
             //System.out.println("-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-");
-            
-            if(!verifyUnique(row) || !verifyUnique(column) || !verifyUnique(box))
-            {
+            if (!verifyUnique(row) || !verifyUnique(column) || !verifyUnique(box)) {
                 resetZeros();
                 statusText.setText("Invalid Board");
                 return false;
             }
-       
+
         }
-      
-        
-        
-        
-        
+
         resetZeros();
         statusText.setText("Valid Board");
         return true;
-        
+
     }
-    
-    
+
+
     private void button_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_CheckActionPerformed
-        
+
         //create 9 size array for each row, column, and box, sort it, and check to see if they contain 1-9
         //if any are false, whole thing is false
         //if all are true, then board is true
-        
-        if (checkBoard(generateIntBoard()))
+        if (checkBoard(generateIntBoard())) {
             statusText.setText("Valid Board");
-        else
+        } else {
             statusText.setText("Invalid Board");
-        
-        
-        
-        
-        
-        
-        
+        }
+
+
     }//GEN-LAST:event_button_CheckActionPerformed
 
-    public int[][] generateIntBoard()
-    {
+    public int[][] generateIntBoard() {
         int[][] board = new int[9][9];
-        
-        for(int i = 0; i < 9; i++)
-        {
-            for(int j = 0; j < 9; j++)
-            {
-                if(this.board[i][j].getText().equals(" ") || this.board[i][j].getText().isEmpty())
-                {
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (this.board[i][j].getText().equals(" ") || this.board[i][j].getText().isEmpty()) {
                     board[i][j] = 0;
-                }
-                else
-                {
+                } else {
                     board[i][j] = Integer.parseInt(this.board[i][j].getText());
                 }
             }
         }
         return board;
-        
+
     }
-    
-    
-    
-    
+
+
     private void button_SolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SolveActionPerformed
-       
+
         //solve board logic 
         int[][] brd = generateIntBoard();
         solveBoard(brd);
-        
+
     }//GEN-LAST:event_button_SolveActionPerformed
 
-    
-    public boolean solveBoard(int[][] board)
-    {
-        
+    public boolean solveBoard(int[][] board) {
+
         //This is the bactracking algorithm. Based off of other designs on the web
-         for (int row = 0; row < 9; row++) { //loop over rows
+        for (int row = 0; row < 9; row++) { //loop over rows
             for (int column = 0; column < 9; column++) { //loop over columns 
                 if (board[row][column] == 0) { //check to see if initial value is 0. If it's not 0, that means it was a constant and should be ignored, as it is gaurenteed to be "correct"
                     for (int k = 1; k <= 9; k++) { //loop over all possible values (1-9)
                         board[row][column] = k; //set value to k, the incrementing of each possible value 
-                        this.board[row][column].setText("" +k); //updates the display to reflect this value 
+                        this.board[row][column].setText("" + k); //updates the display to reflect this value 
                         if (checkBoard(board) && solveBoard(board)) { //checks that the current board is a valid board state. Also, checks to make sure all recursive boards after it are valid board states 
-                          //System.out.println(row +", " + column);
-                          return true; //if true, it's a valid board state! 
+                            //System.out.println(row +", " + column);
+                            return true; //if true, it's a valid board state! 
                         }
                         board[row][column] = 0; //if not a valid board state, reset value, allowing for the next increment of k to be used, and then try again.
                     }
-                
+
                     return false;
+                }
             }
         }
+        return true;
     }
-         return true;
-   }
-         
-    
-    
-    public boolean verifyUnique(int[] ia)
-    {
+
+    public boolean verifyUnique(int[] ia) {
 
         Arrays.sort(ia);
         ArrayList<Integer> usedValues;
         usedValues = new ArrayList<>();
-        
-     
-        
-        for(int i = 0; i < ia.length; i++)
-        {
-            if(ia[i] == 0)
-            {
+
+        for (int i = 0; i < ia.length; i++) {
+            if (ia[i] == 0) {
                 continue;
             }
-            for(int j = 0; j < usedValues.size(); j++)
-            {
-                if(usedValues.get(j) == ia[i])
-                {
-                  
+            for (int j = 0; j < usedValues.size(); j++) {
+                if (usedValues.get(j) == ia[i]) {
+
                     return false;
                 }
-                
-                    
+
             }
-            usedValues.add(ia[i]);    
-                
+            usedValues.add(ia[i]);
+
         }
-        
-        return true;   
-            
-            
+
+        return true;
+
     }
-    public void resetZeros(){
-        for(int i = 0; i < 9; i++)
-        {
-            for(int j = 0; j < 9; j++)
-            {
-        
-               
-                if(board[i][j].getText().equals("0"))
-                {
-                    
+
+    public void resetZeros() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                if (board[i][j].getText().equals("0")) {
+
                     board[i][j].setText(" ");
                 }
             }
-            
+
         }
     }
-        
-    
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1415,7 +1365,7 @@ public class Form_Sudoku extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Form_Sudoku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

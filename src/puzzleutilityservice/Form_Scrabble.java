@@ -1559,7 +1559,7 @@ public class Form_Scrabble extends javax.swing.JFrame {
 
     public boolean generateWord(char[][] board) {        
         try {
-            File filename = new File("puzzleutilityservice/retrievedList.txt");
+            File filename = new File("src/puzzleutilityservice/retrievedList.txt");
             PrintWriter writer = new PrintWriter(filename);
             
             for (char row = 0; row <= 14; row++) {
@@ -1592,7 +1592,7 @@ public class Form_Scrabble extends javax.swing.JFrame {
         //Generate Word from approved dictionary list
 
         //neat way to generate random word from a text file: http://www.javased.com/index.php?post=2218005
-        File file = new File("puzzleutilityservice/Collins Scrabble Words (2015).txt");
+        File file = new File("src/puzzleutilityservice/words.txt");
         String result = null;
         Random rand = new Random();
         int word = 0;
