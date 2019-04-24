@@ -1,12 +1,18 @@
 package puzzleutilityservice;
+
 /**
  * @author Nick Brougher
  * @author Brad
  */
 public class Form_TicTacToe extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Form_TicTacToe
+     */
     public Form_TicTacToe() { initComponents(); }
     static String[] board = {"", "", "", "", "", "", "", "", ""};
-    String player = "X"; 
+    String player = "X";
+    int numMoves = 1;
     // true = x 
     // false == o
     String Winner = "TBD";
@@ -287,6 +293,8 @@ public class Form_TicTacToe extends javax.swing.JFrame {
     }                                           
 
     private void newGameActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        numMoves = 1;
+        
         topLeft.setText("");
         topMiddle.setText("");
         topRight.setText("");
@@ -337,49 +345,52 @@ public class Form_TicTacToe extends javax.swing.JFrame {
         //horizontal top
         if(board[0] == player && board[1] == player && board[2] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
         //horizontal middle
         else if(board[3] == player && board[4] == player && board[5] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
         //horizontal bottom
         else if(board[6] == player && board[7] == player && board[8] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
         //vertical left
         else if(board[0] == player && board[3] == player && board[6] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
         //vertical middle
         else if(board[1] == player && board[4] == player && board[7] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
         //vertical right
         else if(board[2] == player && board[5] == player && board[8] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
         //main diagonal
         else if(board[0] == player && board[4] == player && board[8] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
         //secondary diagonal
         else if(board[2] == player && board[4] == player && board[6] == player)
         {
-            FoundWinner(player);;
+            FoundWinner(player);
         }
+        else if(numMoves == 9) { FoundWinner("Tie!"); }
     }
     
     private void switchPlayer()
     {
-        if(player == "X") { player = "O"; turnSymbol.setText("O");}
-        else { player = "X"; turnSymbol.setText("X");}
+        if(player == "X") { player = "O"; }
+        else { player = "X"; }
+        turnSymbol.setText(player.toString());
+        numMoves++;
     }
     
     private void FoundWinner(String player)
