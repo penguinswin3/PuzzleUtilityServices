@@ -25,11 +25,16 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GenerateBoardResponse_QNAME = new QName("Sudoku", "generateBoardResponse");
-    private final static QName _CheckBoard_QNAME = new QName("Sudoku", "checkBoard");
-    private final static QName _SolveBoard_QNAME = new QName("Sudoku", "solveBoard");
+    private final static QName _SbResponse_QNAME = new QName("Sudoku", "sbResponse");
+    private final static QName _VerifyUniqueResponse_QNAME = new QName("Sudoku", "verifyUniqueResponse");
+    private final static QName _CheckBoardInput_QNAME = new QName("Sudoku", "checkBoardInput");
     private final static QName _CheckBoardResponse_QNAME = new QName("Sudoku", "checkBoardResponse");
+    private final static QName _VerifyUnique_QNAME = new QName("Sudoku", "verifyUnique");
     private final static QName _SolveBoardResponse_QNAME = new QName("Sudoku", "solveBoardResponse");
+    private final static QName _Cb_QNAME = new QName("Sudoku", "cb");
+    private final static QName _Sb_QNAME = new QName("Sudoku", "sb");
     private final static QName _GenerateBoard_QNAME = new QName("Sudoku", "generateBoard");
+    private final static QName _CbResponse_QNAME = new QName("Sudoku", "cbResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: Sudoku.Server
@@ -39,105 +44,118 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SolveBoard }
+     * Create an instance of {@link IntArray }
      * 
      */
-    public SolveBoard createSolveBoard() {
-        return new SolveBoard();
+    public IntArray createIntArray() {
+        return new IntArray();
     }
 
     /**
-     * Create an instance of {@link CheckBoard }
+     * Create an instance of {@link IntArrayArray }
      * 
      */
-    public CheckBoard createCheckBoard() {
-        return new CheckBoard();
+    public IntArrayArray createIntArrayArray() {
+        return new IntArrayArray();
     }
 
     /**
-     * Create an instance of {@link CheckBoardResponse }
-     * 
-     */
-    public CheckBoardResponse createCheckBoardResponse() {
-        return new CheckBoardResponse();
-    }
-
-    /**
-     * Create an instance of {@link GenerateBoardResponse }
-     * 
-     */
-    public GenerateBoardResponse createGenerateBoardResponse() {
-        return new GenerateBoardResponse();
-    }
-
-    /**
-     * Create an instance of {@link GenerateBoard }
-     * 
-     */
-    public GenerateBoard createGenerateBoard() {
-        return new GenerateBoard();
-    }
-
-    /**
-     * Create an instance of {@link SolveBoardResponse }
-     * 
-     */
-    public SolveBoardResponse createSolveBoardResponse() {
-        return new SolveBoardResponse();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GenerateBoardResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "Sudoku", name = "generateBoardResponse")
-    public JAXBElement<GenerateBoardResponse> createGenerateBoardResponse(GenerateBoardResponse value) {
-        return new JAXBElement<GenerateBoardResponse>(_GenerateBoardResponse_QNAME, GenerateBoardResponse.class, null, value);
+    public JAXBElement<String> createGenerateBoardResponse(String value) {
+        return new JAXBElement<String>(_GenerateBoardResponse_QNAME, String.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CheckBoard }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Boolean }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "Sudoku", name = "checkBoard")
-    public JAXBElement<CheckBoard> createCheckBoard(CheckBoard value) {
-        return new JAXBElement<CheckBoard>(_CheckBoard_QNAME, CheckBoard.class, null, value);
+    @XmlElementDecl(namespace = "Sudoku", name = "sbResponse")
+    public JAXBElement<Boolean> createSbResponse(Boolean value) {
+        return new JAXBElement<Boolean>(_SbResponse_QNAME, Boolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SolveBoard }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Boolean }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "Sudoku", name = "solveBoard")
-    public JAXBElement<SolveBoard> createSolveBoard(SolveBoard value) {
-        return new JAXBElement<SolveBoard>(_SolveBoard_QNAME, SolveBoard.class, null, value);
+    @XmlElementDecl(namespace = "Sudoku", name = "verifyUniqueResponse")
+    public JAXBElement<Boolean> createVerifyUniqueResponse(Boolean value) {
+        return new JAXBElement<Boolean>(_VerifyUniqueResponse_QNAME, Boolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CheckBoardResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "Sudoku", name = "checkBoardInput")
+    public JAXBElement<String> createCheckBoardInput(String value) {
+        return new JAXBElement<String>(_CheckBoardInput_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "Sudoku", name = "checkBoardResponse")
-    public JAXBElement<CheckBoardResponse> createCheckBoardResponse(CheckBoardResponse value) {
-        return new JAXBElement<CheckBoardResponse>(_CheckBoardResponse_QNAME, CheckBoardResponse.class, null, value);
+    public JAXBElement<String> createCheckBoardResponse(String value) {
+        return new JAXBElement<String>(_CheckBoardResponse_QNAME, String.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SolveBoardResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link IntArray }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "Sudoku", name = "verifyUnique")
+    public JAXBElement<IntArray> createVerifyUnique(IntArray value) {
+        return new JAXBElement<IntArray>(_VerifyUnique_QNAME, IntArray.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "Sudoku", name = "solveBoardResponse")
-    public JAXBElement<SolveBoardResponse> createSolveBoardResponse(SolveBoardResponse value) {
-        return new JAXBElement<SolveBoardResponse>(_SolveBoardResponse_QNAME, SolveBoardResponse.class, null, value);
+    public JAXBElement<String> createSolveBoardResponse(String value) {
+        return new JAXBElement<String>(_SolveBoardResponse_QNAME, String.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GenerateBoard }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link IntArrayArray }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "Sudoku", name = "cb")
+    public JAXBElement<IntArrayArray> createCb(IntArrayArray value) {
+        return new JAXBElement<IntArrayArray>(_Cb_QNAME, IntArrayArray.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IntArrayArray }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "Sudoku", name = "sb")
+    public JAXBElement<IntArrayArray> createSb(IntArrayArray value) {
+        return new JAXBElement<IntArrayArray>(_Sb_QNAME, IntArrayArray.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "Sudoku", name = "generateBoard")
-    public JAXBElement<GenerateBoard> createGenerateBoard(GenerateBoard value) {
-        return new JAXBElement<GenerateBoard>(_GenerateBoard_QNAME, GenerateBoard.class, null, value);
+    public JAXBElement<String> createGenerateBoard(String value) {
+        return new JAXBElement<String>(_GenerateBoard_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Boolean }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "Sudoku", name = "cbResponse")
+    public JAXBElement<Boolean> createCbResponse(Boolean value) {
+        return new JAXBElement<Boolean>(_CbResponse_QNAME, Boolean.class, null, value);
     }
 
 }

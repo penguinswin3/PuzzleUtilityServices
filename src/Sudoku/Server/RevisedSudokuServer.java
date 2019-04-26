@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "RevisedSudokuServer", targetNamespace = "Sudoku", wsdlLocation = "http://localhost:9876/Sudoku?wsdl")
+@WebServiceClient(name = "RevisedSudokuServer", targetNamespace = "Sudoku", wsdlLocation = "http://localhost:9876/Sudoku/?wsdl")
 public class RevisedSudokuServer
     extends Service
 {
@@ -30,7 +30,7 @@ public class RevisedSudokuServer
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9876/Sudoku?wsdl");
+            url = new URL("http://localhost:9876/Sudoku/?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
